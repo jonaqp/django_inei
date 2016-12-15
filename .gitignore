@@ -95,6 +95,3 @@ static/themes/global/
 run/static/
 
 
-
-/config/wsgi.py
-/manage.py
