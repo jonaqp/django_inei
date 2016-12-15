@@ -113,7 +113,7 @@ LANGUAGES = [
     # ('en', _('English'))
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 LOCALE_PATHS = (
     str(PROJECT_ROOT.path('locale')),
