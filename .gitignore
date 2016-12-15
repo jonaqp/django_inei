@@ -94,6 +94,5 @@ ENV/
 node_modules/
 static/themes/global/
 run/static/
-/security/SECRET.key
 
-# security/memory.db
+
