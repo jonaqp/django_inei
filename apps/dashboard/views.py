@@ -10,6 +10,8 @@ class IndexView(TemplateLoginRequiredMixin):
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated():
             return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+        else:
+            pass
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):

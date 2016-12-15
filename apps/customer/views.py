@@ -32,13 +32,13 @@ class LoginView(FormView):
     @method_decorator(never_cache)
     def dispatch(self, request, *args, **kwargs):
         request.session.set_test_cookie()
-        return super(LoginView, self).dispatch(request, *args, **kwargs)
+        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         auth_login(self.request, form.get_user())
         if self.request.session.test_cookie_worked():
             self.request.session.delete_test_cookie()
-        return super(LoginView, self).form_valid(form)
+        return super().form_valid(form)
 
     def get_success_url(self):
         redirect_to = self.request.GET.get(self.redirect_field_name)
