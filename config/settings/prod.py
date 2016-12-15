@@ -11,7 +11,7 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
     ('django.template.loaders.cached.Loader',
      TEMPLATES[0]['OPTIONS']['loaders']),
 ]
-SECRET_KEY = open(SECRET_FILE).read().strip()
+
 # DATABASES = {
 #     'default': env.db("DATABASE_URL_PROD"),
 # }
@@ -19,7 +19,6 @@ SECRET_KEY = open(SECRET_FILE).read().strip()
 DATABASES = {
     'default': env.db("SQLITE_URL_PROD"),
 }
-
 
 
 DJANGO_APPS = (
