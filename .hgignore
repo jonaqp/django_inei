@@ -3,7 +3,6 @@ syntax: glob
 *.*~
 *.pyc
 *.swp
-*.db
 *.xls
 *.csv
 python/*
