@@ -17,3 +17,8 @@ pillow
 
 # Database
 psycopg2
+
+
+# Staticfiles
+django-storages
+boto
