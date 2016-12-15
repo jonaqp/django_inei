@@ -50,3 +50,23 @@ SECURE_SSL_REDIRECT = True
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 X_FRAME_OPTIONS = 'DENY'
+
+
+
+# --------------------AMAZON STORAGE----------------------------------
+
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+AWS_S3_CUSTOM_DOMAIN = 's3.amazonaws.com/%s' % AWS_STORAGE_BUCKET_NAME
+AWS_PRELOAD_METADATA = True
+
+STATICFILES_LOCATION = 'static'
+STATIC_URL = u"https://{0:s}/{1:s}/".format(AWS_S3_CUSTOM_DOMAIN,
+                                            STATICFILES_LOCATION)
+STATICFILES_STORAGE = 'core.custom_storages.StaticStorage'
+
+MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = u"https://{0:s}/{1:s}/".format(AWS_S3_CUSTOM_DOMAIN,
+                                           MEDIAFILES_LOCATION)
+DEFAULT_FILE_STORAGE = 'core.custom_storages.MediaStorage'
