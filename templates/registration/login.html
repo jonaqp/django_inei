@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load filter %}
+{% load static %}
+
+{% block class_body %}
+    login-container
+{% endblock class_body %}
+
+
+{% block header %}
+    <div class="navbar navbar-inverse bg-blue">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="javascript:void(0)"><img src="{% static "themes/img/logo/logo_american3.png" %}" alt=""></a>
+
+            <ul class="nav navbar-nav pull-right visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    {% block page-content-siderbar %}
+    {% endblock page-content-siderbar %}
+
+    {% block page-content-wrapper %}
+        <div class="content-wrapper">
+            {% block sidebar_page_header %}
+            {% endblock sidebar_page_header %}
+
+            {% block sidebar_page_content %}
+                <div class="content">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="panel panel-body login-form">
+
+                            {% if form.errors and not form.non_field_errors %}
+                                <div class="alert alert-danger alert-styled-left alert-bordered">
+                                    <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+                                    {% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+                                </div>
+                            {% endif %}
+                            {% if form.non_field_errors %}
+                                <div class="alert alert-info alert-styled-left alert-bordered">
+                                    <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+                                    {% for error in form.non_field_errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {% if user.is_authenticated %}
+                                <div class="alert alert-info alert-styled-left alert-bordered">
+                                    <button type="button" class="close" data-dismiss="alert"><span>&times;</span><span class="sr-only">Close</span></button>
+                                    {% blocktrans with username=request.user.get_username trimmed %}
+                                    You are authenticated as {{ username }}, but are not authorized to
+                                    access this page. Would you like to login to a different account?
+                                {% endblocktrans %}
+                                </div>
+                            {% endif %}
+
+
+                            <div class="text-center">
+                                <div class="icon-object border-slate-300 text-slate-300">
+                                    <img class="img-responsive img-thumbnail img-circle" src="{% static "themes/img/logo/logo_american4.png" %}" alt="">
+                                </div>
+                                <h5 class="content-group">{% trans 'Login to your account' %}
+                                    <small class="display-block">{% trans 'Enter your credentials below' %}</small>
+                                </h5>
+                            </div>
+
+                            <div class="form-group has-feedback has-feedback-left">
+                                {{ form.email|addcss:"form-control" }}
+                                <div class="form-control-feedback">
+                                    <i class="icon-user text-muted"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-feedback has-feedback-left">
+                                {{ form.password|addcss:"form-control" }}
+                                <div class="form-control-feedback">
+                                    <i class="icon-lock2 text-muted"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">Entrar <i
+                                        class="icon-circle-right2 position-right"></i></button>
+                                <input type="hidden" name="next" value="{{ next }}" />
+                            </div>
+                        </div>
+                    </form>
+                    <div class="footer text-muted text-center">
+						© 2015. <a href="#">{{ project_name }}</a>
+					</div>
+                </div>
+            {% endblock sidebar_page_content %}
+        </div>
+    {% endblock page-content-wrapper %}
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

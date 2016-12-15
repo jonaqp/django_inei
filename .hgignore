@@ -1,0 +1,24 @@
+syntax: glob
+
+*.*~
+*.pyc
+*.swp
+*.db
+*.xls
+*.csv
+python/*
+.DS_Store
+*.egg/*
+*.egg-info/*
+*iml
+.idea
+*.egg
+/env
+*.orig
+
+.idea/
+node_modules/
+static/themes/global/
+run/static/
+/security/SECRET.key
+/security/memory.db

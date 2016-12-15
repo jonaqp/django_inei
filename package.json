@@ -1,0 +1,9 @@
+{
+  "name": "jonap_generator",
+  "scripts": {
+    "postinstall": "bower install"
+  },
+  "dependencies": {
+    "bower": "latest"
+  }
+}

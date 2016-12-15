@@ -1,0 +1,31 @@
+<div class="clearfix"></div>
+<br /><br />
+{% if is_paginated %}
+    <div class="btn-toolbar col-md-5 col-md-push-7">
+        {% if page_obj.has_previous %}
+            <div class="btn-group">
+                <a class="btn btn-primary btn-xs" href="?page={{ page_obj.previous_page_number }}"><span>Previous</span></a>
+            </div>
+        {% else %}
+            <div class="btn-group">
+                <a class="btn btn-primary disabled btn-xs" href="#"><span>Previous</span></a>
+            </div>
+        {% endif %}
+
+        <div class="btn-group">
+            <input type="text" value="{{ page_obj.number }}" class="btn btn-default btn-xs" style="width: 60px;">
+            <button type="button" class="btn btn-default btn-xs">/</button>
+            <button type="button" class="btn btn-default btn-xs">{{ page_obj.paginator.num_pages }}</button>
+        </div>
+
+        {% if page_obj.has_next %}
+            <div class="btn-group">
+                <a class="btn btn-primary btn-xs" href="?page={{ page_obj.next_page_number }}"><span>Next</span></a>
+            </div>
+        {% else %}
+            <div class="btn-group">
+                <a class="btn btn-primary disabled btn-xs" href="#"><span>Next</span></a>
+            </div>
+        {% endif %}
+    </div>
+{% endif %}

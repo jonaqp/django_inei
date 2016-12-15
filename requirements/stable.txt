@@ -1,0 +1,19 @@
+#Core
+Django
+
+# WSGI HTTP Server
+gunicorn
+pytz
+
+# Debugging
+ipdb
+ipython
+django-debug-toolbar
+
+
+# Configuration
+django-environ
+pillow
+
+# Database
+psycopg2

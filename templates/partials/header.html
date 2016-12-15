@@ -1,0 +1,50 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_language_info for LANGUAGE_CODE as lang %}
+{% get_available_languages as languages %}
+<div class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="javascript:void(0)">PROJECT NAME</a>
+
+        <ul class="nav navbar-nav visible-xs-block">
+            <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+            <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+        </ul>
+    </div>
+
+    <div class="navbar-collapse collapse" id="navbar-mobile">
+        <ul class="nav navbar-nav">
+            <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown language-switch">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    {{ lang.name_local }}
+                    <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu">
+                    {% for language in languages %}
+                        <li class="{% ifequal current_language language.0 %}active{% endifequal %}">
+                            <a href="/./{{ language.0 }}/" title="{{ language.1 }}">{{ language.1 }} </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+
+            <li class="dropdown dropdown-user">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="{{ user.get_profile.get_logo_profile_url }}" >
+                    <span>{{ user }}</span>
+                    <i class="caret"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="{% url 'auth_logout' %}"><i class="icon-switch2"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
