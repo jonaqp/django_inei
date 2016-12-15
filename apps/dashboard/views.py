@@ -8,10 +8,8 @@ class IndexView(TemplateLoginRequiredMixin):
     template_name = 'dashboard/base_dashboard.html'
 
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated():
+        if not self.request.user.is_authenticated():
             return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
-        else:
-            pass
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
