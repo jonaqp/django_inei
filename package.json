@@ -1,5 +1,5 @@
 {
-  "name": "jonap_generator",
+  "name": "pck_django_erp",
   "scripts": {
     "postinstall": "bower install"
   },
